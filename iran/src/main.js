@@ -416,7 +416,7 @@ function setupPopup() {
 
     // Show the popup when the page loads
     window.addEventListener('load', function () {
-        togglePopup('block');
+        togglePopup('none');
         document.addEventListener('click', handleDocumentClick);
     });
 
