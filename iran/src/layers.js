@@ -1,49 +1,51 @@
 const minZoom = 5;
 const maxZoom = 14;
 
-function setupBaseLayers(accessToken) {
-    const whiteLayer = L.tileLayer('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wAAAAgAB9DhnJ4AAAAASUVORK5CYII=');
-    const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: "Basemap data: &copy; <a href='https://openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
-    });
-    const osmTopoLayer = L.tileLayer('https://tile.opentopomap.org/{z}/{x}/{y}.png', {
-        attribution: "Basemap data: &copy; <a href='https://openstreetmap.org/copyright'>OpenStreetMap</a> contributors, <a href='http://viewfinderpanoramas.org'>SRTM</a> | map style: &copy; <a href='https://opentopomap.org'>OpenTopoMap</a> (<a href='https://creativecommons.org/licenses/by-sa/3.0/'>CC-BY-SA</a>)"
-    });
-    const osmCycleLayer = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
-        attribution: "© OpenStreetMap contributors"
-    });
+const mapboxAccessToken = 'pk.eyJ1IjoibWFobXVkMSIsImEiOiJjbWYxMGN2ZDEwN3J4MnJzaWdpamNydHNlIn0.bnZ4JyGfJWt0yBv_9wr4EQ'
 
-    // const PositronLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    //     attribution: '©OpenStreetMap, ©CartoDB',
-    //     subdomains: 'abcd',
-    // })
-    // const terrainLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://www.mapbox.com/">Mapbox</a>',
-    //     accessToken: accessToken,
-    //     id: 'outdoors-v11'
-    // });
-    // const darkLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    //     attribution: 'Map data © Mapbox',
-    //     id: 'mapbox/dark-v11',
-    //     accessToken: accessToken
-    // });
-    // const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token=' + accessToken, {
-    //     attribution: '© Mapbox contributors',
-    //     id: 'satellite-streets-v12'
-    // });
+// Attribution texts
+const sentinelAttribution = 'Contains modified Copernicus Sentinel data 2014-2020, processed by ESA.';
+const subsidenceLuhAttribution = "Map: "
+const subsidenceLuhPaper = "<a href='https://www.science.org/doi/full/10.1126/sciadv.adk3039' target='_blank'>Original paper</a>"
+const subsidenceLuhData = "<a href='https://doi.org/10.5281/zenodo.10815578' target='_blank'>Original data</a>"
+const subsidenceLuhAttributionFull = subsidenceLuhAttribution + subsidenceLuhPaper + " | " + subsidenceLuhData + " | " + sentinelAttribution;
 
-    const layers = {
-        "No Background": whiteLayer,
-        "OSM Map": osmLayer,
-        "OSM Topo": osmTopoLayer,
-        "OSM Cycle": osmCycleLayer,
-        // "Light Map": PositronLayer,
-        // "Dark Map": darkLayer,
-        // "Terrain": terrainLayer,
-        // "Satellite": satelliteLayer
+
+function setupMapboxLayers() {
+     const terrainLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+         attribution:   'Basemap: © <a href="https://www.mapbox.com/about/maps" target="_blank">Mapbox</a> | © <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | <a href="https://apps.mapbox.com/feedback/" target="_blank">Improve this map</a>',
+         accessToken: mapboxAccessToken,
+         id: 'outdoors-v11'
+     });
+     const darkLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+         attribution:   'Basemap: © <a href="https://www.mapbox.com/about/maps" target="_blank">Mapbox</a> | © <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | <a href="https://apps.mapbox.com/feedback/" target="_blank">Improve this map</a>',
+         id: 'mapbox/dark-v11',
+         accessToken: mapboxAccessToken
+     });
+
+     const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+         attribution:   'Basemap: © <a href="https://www.mapbox.com/about/maps" target="_blank">Mapbox</a> | © <a href="https://www.maxar.com/" target="_blank">Maxar</a> | © <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | <a href="https://apps.mapbox.com/feedback/" target="_blank">Improve this map</a>',
+         id: 'satellite-streets-v12',
+         accessToken: mapboxAccessToken
+     });
+
+     return {
+         "Dark Map": darkLayer,
+         "Terrain": terrainLayer,
+         "Satellite": satelliteLayer
     };
 
-    return layers
+}
+function setupBaseLayers() {
+    const whiteLayer = L.tileLayer('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wAAAAgAB9DhnJ4AAAAASUVORK5CYII=');
+    const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: "Basemap: &copy; <a href='https://openstreetmap.org/copyright' target='_blank'>OpenStreetMap</a> contributors"
+    });
+
+    return {
+        "No Background": whiteLayer,
+        "OSM Map": osmLayer,
+    }
 }
 
 function setupInclusiveOverlayLayers(){
@@ -57,7 +59,7 @@ function setupInclusiveOverlayLayers(){
         tms: true,
         minZoom: minZoom,
         maxZoom: maxZoom,
-        attribution: "Contains modified Copernicus Sentinel data 2022, processed by ESA."
+        attribution: subsidenceLuhAttributionFull
     });
     return {"Subsidence": wmsSubsidence}
 }
@@ -73,7 +75,7 @@ function setupExclusiveOverlayLayers() {
         tms: true,
         minZoom: minZoom,
         maxZoom: maxZoom,
-        attribution: "Contains modified Copernicus Sentinel data 2022, processed by ESA."
+        attribution: subsidenceLuhAttributionFull
     });
     const wmsCountiesSubsidenceArea = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
@@ -84,7 +86,7 @@ function setupExclusiveOverlayLayers() {
         tms: true,
         minZoom: minZoom,
         maxZoom: maxZoom,
-        attribution: "Contains modified Copernicus Sentinel data 2022, processed by ESA."
+        attribution: subsidenceLuhAttributionFull
     });
     const wmsProvincesSubsidenceArea = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
@@ -95,7 +97,7 @@ function setupExclusiveOverlayLayers() {
         tms: true,
         minZoom: minZoom,
         maxZoom: maxZoom,
-        attribution: "Contains modified Copernicus Sentinel data 2022, processed by ESA."
+        attribution: subsidenceLuhAttributionFull
     });
     const wmsMajorBasinSubsidenceArea = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
@@ -106,7 +108,7 @@ function setupExclusiveOverlayLayers() {
         tms: true,
         minZoom: minZoom,
         maxZoom: maxZoom,
-        attribution: "Contains modified Copernicus Sentinel data 2022, processed by ESA."
+        attribution: subsidenceLuhAttributionFull
     });
     const wmsMinorBasinSubsidenceArea = L.tileLayer.wms('https://www.geo.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
@@ -117,7 +119,7 @@ function setupExclusiveOverlayLayers() {
         tms: true,
         minZoom: minZoom,
         maxZoom: maxZoom,
-        attribution: "Contains modified Copernicus Sentinel data 2022, processed by ESA."
+        attribution: subsidenceLuhAttributionFull
     });
 
     return {

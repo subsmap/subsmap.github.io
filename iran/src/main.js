@@ -1,9 +1,11 @@
 let currentLanguage = 'en';
 let opacity = 1;
-const mapboxAccessToken = 'none'
 
 // base and overlay layers
-const baseLayers = setupBaseLayers(mapboxAccessToken);
+const baseLayers = setupBaseLayers();
+const mapboxLayers = setupMapboxLayers();
+Object.assign(baseLayers, mapboxLayers);
+
 const overlayExclusiveLayers = setupExclusiveOverlayLayers();
 const overlayInclusiveLayers = setupInclusiveOverlayLayers();
 
@@ -24,7 +26,7 @@ const map = L.map('map', {
     fullscreenControl: true
 });
 
-map.attributionControl.addAttribution('©<a href="https://www.ipi.uni-hannover.de/en/haghighi/"> Mahmud Haghighi</a>, 2023');
+map.attributionControl.addAttribution('©<a href="https://www.ipi.uni-hannover.de/en/haghighi/" target="_blank"> <strong>Mahmud Haghighi</strong></a> 2023-2025');
 baseLayers['OSM Map'].addTo(map);
 
 let controlPanel;
@@ -32,6 +34,7 @@ let controlPanel;
 // Setup
 initializeControlPanel();
 setupLayerChangeListeners();
+setupMapboxLayerChangeListeners();
 setupLonLatDisplay();
 setupOpacityControl();
 setupMapHover();
@@ -82,6 +85,24 @@ function setupMapLayerChange(){
 
     map.on('overlayadd', bringLayerToFront);
     map.on('baselayerchange', bringLayerToBack);
+}
+
+function setupMapboxLayerChangeListeners() {
+    for (const layerName in mapboxLayers) {
+        setupLogoShow(mapboxLayers[layerName]);
+    }
+    function setupLogoShow(layer) {
+        layer.on('add', function() {
+            setMapboxLogoVisible(true);
+        });
+        layer.on('remove', function() {
+            const anyMapboxLayerActive = Object.values(mapboxLayers).some(l => map.hasLayer(l));
+            setMapboxLogoVisible(anyMapboxLayerActive);
+        });
+    }
+    function setMapboxLogoVisible(visible) {
+        document.querySelector('.mapbox-logo').style.display = visible ? 'block' : 'none';
+    }
 }
 
 function setupLayerChangeListeners() {
