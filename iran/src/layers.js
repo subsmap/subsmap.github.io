@@ -10,7 +10,7 @@ const subsidenceLuhAttributionFull = subsidenceLuhAttribution + subsidenceLuhPap
 
 
 function setupInclusiveOverlayLayers(){
-    const wmsSubsidence = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsSubsidence = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:subsidence_rate_2014-2020_desc_mmpr_v1.0.0',
         STYLES: 'cm_spectral',
@@ -25,8 +25,9 @@ function setupInclusiveOverlayLayers(){
     return {"Subsidence": wmsSubsidence}
 }
 
+
 function setupExclusiveOverlayLayers() {
-    const wmsSeasonal = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsSeasonal = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:seasonal_amplitude_2014-2020_desc_mm_v1.0.0',
         STYLES: 'cm_viridis',
@@ -38,7 +39,7 @@ function setupExclusiveOverlayLayers() {
         maxZoom: maxZoom,
         attribution: subsidenceLuhAttributionFull
     });
-    const wmsCountiesSubsidenceArea = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsCountiesSubsidenceArea = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:counties_2014-2020_v1.0.0',
         STYLES: 'subsidence:subsidence_area_percent_white_to_red',
@@ -49,7 +50,7 @@ function setupExclusiveOverlayLayers() {
         maxZoom: maxZoom,
         attribution: subsidenceLuhAttributionFull
     });
-    const wmsProvincesSubsidenceArea = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsProvincesSubsidenceArea = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:provinces_2014-2020_v1.0.0',
         STYLES: 'subsidence:subsidence_area_percent_white_to_red',
@@ -60,7 +61,7 @@ function setupExclusiveOverlayLayers() {
         maxZoom: maxZoom,
         attribution: subsidenceLuhAttributionFull
     });
-    const wmsMajorBasinSubsidenceArea = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsMajorBasinSubsidenceArea = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:major_catchments_2014-2020_v1.0.0',
         STYLES: 'subsidence:counties_subsidence_area_percent_white+reds',
@@ -91,10 +92,3 @@ function setupExclusiveOverlayLayers() {
         // "Minor Basin": wmsMinorBasinSubsidenceArea,
     };
 }
-
-
-
-
-
-
-
