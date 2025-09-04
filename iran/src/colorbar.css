@@ -9,10 +9,10 @@
 
 .color-bar-spectral {
     background: linear-gradient(to right, #2b83ba 0%, #abdda4 25%, #ffffbf 50%, #fdae61 75%, #d7191c 100%);
-    width: 100px;
+    width: 150px;
 }
 
 .color-bar-viridis {
     background: linear-gradient(to right, #fde725 0%, #7ad151 25%, #23a884 50%, #2a788e 75%, #414387 100%);
-    width: 100%;
+    width: 150px;
 }
