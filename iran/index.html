@@ -25,9 +25,12 @@
     </div>
 
     <div id="settingPannel" class="settingPannel">
-        <div>
-            <label data-translate="opacity">Opacity: <span id="slider-value">100%</span></label>
-            <input id="slider" class="slider" type="range" min="0" max="100" step="5" value="100">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <label data-translate="opacity" style="margin: 0;">
+                Opacity:
+            </label>
+            <span id="slider-value" style="display: inline-block; min-width: 5ch; text-align: right;">100%</span>
+            <input id="slider" class="slider" type="range" min="0" max="100" step="10" value="100" style="margin: 0;">
         </div>
         <hr>
 

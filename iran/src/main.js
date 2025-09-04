@@ -164,6 +164,10 @@ function setupLonLatDisplay() {
 function setupOpacityControl() {
     document.getElementById('slider').addEventListener('input', (event) => {
         opacity = event.target.value / 100;
+
+        setTimeout(() => {
+            document.getElementById('slider-value').textContent = (opacity*100).toFixed(0) + '%'
+        }, 100);
         for (const value of Object.values(overlayLayers)) {
             if (map.hasLayer(value)) {
                 value.setOpacity(opacity);
