@@ -478,15 +478,15 @@ function setupPopup() {
 function setupCollapsibleSettingsPanel() {
     const settingPanel = document.getElementById('settingPannel');
     const toggleBar = document.getElementById('settingToggleBar');
-    const toggleTriangle = document.getElementById('toggleTriangle');
+    const toggleSymbol = document.getElementById('toggleSymbol');
 
     toggleBar.addEventListener('click', function() {
         if (settingPanel.classList.contains('collapsed')) {
             settingPanel.classList.remove('collapsed');
-            toggleTriangle.innerHTML = '&#10134;';
+            toggleSymbol.innerHTML = '&#10134;';
         } else {
             settingPanel.classList.add('collapsed');
-            toggleTriangle.innerHTML = '&#10133;';
+            toggleSymbol.innerHTML = '&#10133;';
         }
     });
 }
