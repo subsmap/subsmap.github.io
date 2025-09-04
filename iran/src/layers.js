@@ -8,7 +8,10 @@ const subsidenceLuhPaper = "<a href='https://www.science.org/doi/full/10.1126/sc
 const subsidenceLuhData = "<a href='https://doi.org/10.5281/zenodo.10815578' target='_blank'>Original data</a>"
 const subsidenceLuhAttributionFull = subsidenceLuhAttribution + subsidenceLuhPaper + " | " + subsidenceLuhData + " | " + sentinelAttribution;
 
-const subsidenceCometAttributionFull = ""
+const subsidenceCometAttribution = "Map: "
+const subsidenceCometPaper = "<a href='https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024JB030367' target='_blank'>Original paper</a>"
+const subsidenceCometData = ""
+const subsidenceCometAttributionFull = subsidenceCometAttribution + subsidenceCometPaper + " | " + sentinelAttribution;
 
 function setupInclusiveOverlayLayers(){
 //    const wmsSubsidence = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
