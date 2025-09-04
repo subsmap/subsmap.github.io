@@ -228,7 +228,7 @@ function setupMapHover() {
     function updateValueDisplay(value, containerId) {
         // Update display
         let displayText = ": " + Math.round(value / 10);
-        if (value === 65535) { // typically a nodata value
+        if (value === 65535 || value === -9999) { // typically a nodata value
             displayText = ': -';
         }
         document.getElementById(containerId).textContent = displayText;
