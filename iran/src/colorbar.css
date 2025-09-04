@@ -16,3 +16,38 @@
     background: linear-gradient(to right, #fde725 0%, #7ad151 25%, #23a884 50%, #2a788e 75%, #414387 100%);
     width: 150px;
 }
+
+.color-bar-vik {
+    background: linear-gradient(to right,
+        #00204d 0%,
+        #3761ab 25%,
+        #ffffff 50%,
+        #d65252 75%,
+        #67001f 100%
+    );
+    width: 150px;
+}
+
+.color-bar-bam {
+    background: linear-gradient(to right,
+        #5a0049 0%,
+        #ce79a9 25%,
+        #ffffff 50%,
+        #cfe5b8 75%,
+        #0b5d12 100%
+    );
+    width: 150px;
+}
+
+.color-bar-cork {
+    background: linear-gradient(to right,
+        #2b194c 0%,    /* dark purple */
+        #3f5da1 25%,   /* bluish */
+        #90c3aa 50%,   /* greenish mid */
+        #cfa67a 75%,   /* warm tan */
+        #3c0925 100%   /* dark reddish */
+    );
+    width: 150px;
+    height: 10px;
+    border: 1px solid #000;
+}
