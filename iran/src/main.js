@@ -6,13 +6,22 @@ const baseLayers = setupBaseLayers();
 const mapboxLayers = setupMapboxLayers();
 Object.assign(baseLayers, mapboxLayers);
 
-const overlayExclusiveLayers = setupExclusiveOverlayLayers();
+const overlayLayersLuh = setupOverlayLayersLuh();
+const overlayLayerComet = setupOverlayLayersComet()
 const overlayInclusiveLayers = setupInclusiveOverlayLayers();
 
-const overlayLayers = {...overlayExclusiveLayers, ...overlayInclusiveLayers}
+const overlayLayers = {...overlayLayersLuh, ...overlayLayerComet, ...overlayInclusiveLayers}
+const layersColorbars = {
+    "Subsidence (LUH)":     "colorBarPanelSubsidence",
+    "Seasonal":             "colorBarPanelSeasonal",
+    "Subsidence (COMET)":   "colorBarPanelSubsidence",
+}
+
+const overlayExclusiveLayers = { ...overlayLayersLuh, ...overlayLayerComet };
+
 const groupedOverlays = {
-    "Subsidence map": overlayInclusiveLayers,
-    "Information": overlayExclusiveLayers 
+    "LUH": overlayLayersLuh,
+    "COMET": overlayLayerComet
 };
 
 // map
@@ -39,7 +48,7 @@ setupLonLatDisplay();
 setupOpacityControl();
 setupMapHover();
 setupMapLayerChange();
-overlayInclusiveLayers['Subsidence'].addTo(map);
+overlayLayers['Subsidence (LUH)'].addTo(map);
 document.addEventListener('DOMContentLoaded', setupMapClick);
 document.addEventListener('DOMContentLoaded', setupColorBarControls);
 document.addEventListener('DOMContentLoaded', setupPopup);
@@ -107,36 +116,39 @@ function setupMapboxLayerChangeListeners() {
 
 function setupLayerChangeListeners() {
     for (const layerName in overlayLayers) {
-        setupColorbarShow(layerName, 'colorBarPanel'+layerName)
         setupLayerExclusiveEvents(layerName)
+        setupColorbarShow(layerName);
     }
 
-    function setupColorbarShow(layerName, infoElementId) {
-        overlayLayers[layerName].on('add', function() {
-            const element = document.getElementById(infoElementId);
-            if (element){
-                element.style.display = 'block';
-            }
+    function setupColorbarShow(layerName) {
+        const infoElementId = layersColorbars[layerName]
+        const layer = overlayLayers[layerName];
+        layer.on('add', () => {
+            const el = document.getElementById(infoElementId);
+            if (el) el.style.display = 'block';
         });
-
-        overlayLayers[layerName].on('remove', function() {
-            const element = document.getElementById(infoElementId);
-            if (element){
-                element.style.display = 'none';
-            }
+        layer.on('remove', () => {
+            const el = document.getElementById(infoElementId);
+            if (el) el.style.display = 'none';
         });
     }
     function setupLayerExclusiveEvents(layerName) {
+        const layer = overlayExclusiveLayers[layerName];
+        if (!layer) return;
         if (overlayExclusiveLayers[layerName]) {
-            overlayExclusiveLayers[layerName].on('add', function() {
-                setTimeout(function() {
-                    for (const otherLayerName in overlayExclusiveLayers) {
-                        if (otherLayerName !== layerName) {
-                           overlayExclusiveLayers[otherLayerName].remove()
-                        }
-                    }
-                }, 10);
-            });
+            layer.on('add', () => {
+            setTimeout(() => {
+            for (const other of Object.values(overlayExclusiveLayers)) {
+                if (other !== layer && map.hasLayer(other)) {
+                    map.removeLayer(other);
+                }
+            }
+            const cbar = layersColorbars[layerName]
+            const el = document.getElementById(cbar);
+            if (el) el.style.display = 'block';
+
+            }, 10);
+        });
         }
     }
 }
@@ -182,8 +194,11 @@ function setupMapHover() {
         if (latlng.equals(lastLatLng)) return;
         lastLatLng = latlng;
 
-        if (map.hasLayer(overlayLayers['Subsidence'])) {
-            getWMSInfo(latlng, 'subsidence_rate', overlayLayers['Subsidence'], 'subsidenceVal');
+        if (map.hasLayer(overlayLayers['Subsidence (LUH)'])) {
+            getWMSInfo(latlng, 'subsidence_rate', overlayLayers['Subsidence (LUH)'], 'subsidenceVal');
+        }
+        if (map.hasLayer(overlayLayers['Subsidence (COMET)'])) {
+            getWMSInfo(latlng, 'subsidence_rate', overlayLayers['Subsidence (COMET)'], 'subsidenceVal');
         }
         if (map.hasLayer(overlayLayers['Seasonal'])) {
             getWMSInfo(latlng, 'amplitude', overlayLayers['Seasonal'], 'seasonalVal');
@@ -252,7 +267,8 @@ function formatNumberIntl(num) {
 
 function setupMapClick() {
     const fieldsToShow = {
-        'Subsidence': ['subsidence_rate'],
+        'Subsidence (LUH)': ['subsidence_rate'],
+        'Subsidence (COMET)': ['subsidence_rate'],
         'Seasonal': ['amplitude'],
         'Counties': ['name_en', 'subs_area_sqkm', 'area_sqkm','subs_area_percent', 'subs_max', 'Population'],
         'Provinces': ['name_en', 'subs_area_sqkm', 'area_sqkm','subs_area_percent', 'subs_max'],
@@ -377,10 +393,10 @@ function setupColorBarControls() {
     // setup controls for colorbar adjustments
     // buttonId and settings for colorbar adjustments
     const adjustmentConfigurations = [
-        { buttonId: 'subsidenceIncrease', change: 5, centerId: 'colorbarSubsidenceCenter', rightId: 'colorbarSubsidenceRight', minValue: 5, maxValue: 40, layer: overlayLayers['Subsidence'] },
-        { buttonId: 'subsidenceDecrease', change: -5, centerId: 'colorbarSubsidenceCenter', rightId: 'colorbarSubsidenceRight', minValue: 5, maxValue: 40, layer: overlayLayers['Subsidence'] },
-        { buttonId: 'seosonalIncrease', change: 5, centerId: 'colorbarSeosonalCenter', rightId: 'colorbarSeosonalRight', minValue: 5, maxValue: 15, layer: overlayLayers['Seasonal'] },
-        { buttonId: 'seosonalDecrease', change: -5, centerId: 'colorbarSeosonalCenter', rightId: 'colorbarSeosonalRight', minValue: 5, maxValue: 15, layer: overlayLayers['Seasonal'] }
+        { buttonId: 'subsidenceIncrease', change: 5, centerId: 'colorbarSubsidenceCenter', rightId: 'colorbarSubsidenceRight', minValue: 5, maxValue: 40, layers: [overlayLayers['Subsidence (LUH)'], overlayLayers['Subsidence (COMET)']] },
+        { buttonId: 'subsidenceDecrease', change: -5, centerId: 'colorbarSubsidenceCenter', rightId: 'colorbarSubsidenceRight', minValue: 5, maxValue: 40, layers: [overlayLayers['Subsidence (LUH)'], overlayLayers['Subsidence (COMET)']] },
+        { buttonId: 'seosonalIncrease', change: 5, centerId: 'colorbarSeosonalCenter', rightId: 'colorbarSeosonalRight', minValue: 5, maxValue: 15, layers: [overlayLayers['Seasonal']] },
+        { buttonId: 'seosonalDecrease', change: -5, centerId: 'colorbarSeosonalCenter', rightId: 'colorbarSeosonalRight', minValue: 5, maxValue: 15, layers: [overlayLayers['Seasonal']] }
     ];
     setupListeners(adjustmentConfigurations);
 
@@ -391,14 +407,14 @@ function setupColorBarControls() {
         });
     }
 
-    function setupAdjustmentListener({ buttonId, change, centerId, rightId, minValue, maxValue, layer }) {
+    function setupAdjustmentListener({ buttonId, change, centerId, rightId, minValue, maxValue, layers }) {
         document.getElementById(buttonId).addEventListener('click', function(event) {
             event.preventDefault();
-            adjustColorBarValue(change, centerId, rightId, minValue, maxValue, layer);
+            adjustColorBarValue(change, centerId, rightId, minValue, maxValue, layers);
         });
     }
 
-    function adjustColorBarValue(change, centerId, rightId, minValue, maxValue, layer) {
+    function adjustColorBarValue(change, centerId, rightId, minValue, maxValue, layers) {
         // set new value
         const maxLabel = document.getElementById(rightId);
         const centerLabel = document.getElementById(centerId);
@@ -409,7 +425,7 @@ function setupColorBarControls() {
 
         maxLabel.innerText = newValue;
         centerLabel.innerText = newValue / 2;
-        updateEnvironmentVariableAndLayer(newValue * 10, layer);
+        layers.forEach(layer => updateEnvironmentVariableAndLayer(newValue * 10, layer));
     }
 
     function updateEnvironmentVariableAndLayer(maxValue, layer) {

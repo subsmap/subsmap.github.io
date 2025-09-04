@@ -8,8 +8,27 @@ const subsidenceLuhPaper = "<a href='https://www.science.org/doi/full/10.1126/sc
 const subsidenceLuhData = "<a href='https://doi.org/10.5281/zenodo.10815578' target='_blank'>Original data</a>"
 const subsidenceLuhAttributionFull = subsidenceLuhAttribution + subsidenceLuhPaper + " | " + subsidenceLuhData + " | " + sentinelAttribution;
 
+const subsidenceCometAttributionFull = ""
 
 function setupInclusiveOverlayLayers(){
+//    const wmsSubsidence = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
+//        VERSION: '1.1.0',
+//        LAYERS: 'subsidence:subsidence_rate_2014-2020_desc_mmpr_v1.0.0',
+//        STYLES: 'cm_spectral',
+//        format: 'image/png',
+//        transparent: true,
+//        env: "c1:0;c2:50;c3:100;c4:200;c5:250",
+//        tms: true,
+//        minZoom: minZoom,
+//        maxZoom: maxZoom,
+//        attribution: subsidenceLuhAttributionFull
+//    });
+//    return {"Subsidence": wmsSubsidence}
+    return {}
+}
+
+
+function setupOverlayLayersLuh() {
     const wmsSubsidence = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:subsidence_rate_2014-2020_desc_mmpr_v1.0.0',
@@ -22,11 +41,6 @@ function setupInclusiveOverlayLayers(){
         maxZoom: maxZoom,
         attribution: subsidenceLuhAttributionFull
     });
-    return {"Subsidence": wmsSubsidence}
-}
-
-
-function setupExclusiveOverlayLayers() {
     const wmsSeasonal = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:seasonal_amplitude_2014-2020_desc_mm_v1.0.0',
@@ -85,10 +99,57 @@ function setupExclusiveOverlayLayers() {
     });
 
     return {
+        "Subsidence (LUH)": wmsSubsidence,
         "Seasonal": wmsSeasonal,
-        "Counties": wmsCountiesSubsidenceArea,
-        "Provinces": wmsProvincesSubsidenceArea,
+//        "Counties": wmsCountiesSubsidenceArea,
+//        "Provinces": wmsProvincesSubsidenceArea,
         // "Major Basin": wmsMajorBasinSubsidenceArea,
         // "Minor Basin": wmsMinorBasinSubsidenceArea,
     };
+}
+
+
+function setupOverlayLayersComet(){
+    const wmsSubsidenceComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
+        VERSION: '1.1.0',
+        LAYERS: 'subsidence:Iran_subsidence_rate_gt1mmpyr_2014-2022_Sentinel-1_InSAR_decomposed_v1.0.0_tiled',
+        STYLES: 'cm_spectral',
+        format: 'image/png',
+        transparent: true,
+        env: "c1:0;c2:50;c3:100;c4:200;c5:250",
+        tms: true,
+        minZoom: minZoom,
+        maxZoom: maxZoom,
+        attribution: subsidenceCometAttributionFull
+    });
+    const wmsVerticalComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
+        VERSION: '1.1.0',
+        LAYERS: 'subsidence:Iran_vertical_rate_2014-2022_s1_decompose_comet_v1.0.0',
+        STYLES: 'cm_turbo_inv',
+        format: 'image/png',
+        transparent: true,
+        env: "c1:200;c2:100;c3:0;c4:-100;c5:-200",
+        tms: true,
+        minZoom: minZoom,
+        maxZoom: maxZoom,
+        attribution: subsidenceCometAttributionFull
+    });
+    const wmsEastComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
+        VERSION: '1.1.0',
+        LAYERS: 'subsidence:Iran_east_rate_2014-2022_s1_decompose_comet_v1.0.0',
+        STYLES: 'cm_turbo_inv',
+        format: 'image/png',
+        transparent: true,
+        env: "c1:-50;c2:-25;c3:0;c4:25;c5:50",
+        tms: true,
+        minZoom: minZoom,
+        maxZoom: maxZoom,
+        attribution: subsidenceCometAttributionFull
+    });
+
+    return {
+        "Subsidence (COMET)": wmsSubsidenceComet,
+        "Vertical": wmsVerticalComet,
+        "East": wmsEastComet
+        };
 }
