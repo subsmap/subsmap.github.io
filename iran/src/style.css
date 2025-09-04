@@ -155,7 +155,7 @@ a {
 
 .logo-panel {
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     left: 10px;
     height: 20px;
     width: 65px;
