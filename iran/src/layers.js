@@ -149,7 +149,7 @@ function setupOverlayLayersComet(){
 
     return {
         "Subsidence (COMET)": wmsSubsidenceComet,
-        "Vertical": wmsVerticalComet,
-        "East": wmsEastComet
+        "Up component": wmsVerticalComet,
+        "East-West component": wmsEastComet
         };
 }

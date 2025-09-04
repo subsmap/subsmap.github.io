@@ -15,8 +15,8 @@ const layersColorbars = {
     "Subsidence (LUH)":     "colorBarPanelSubsidence",
     "Seasonal":             "colorBarPanelSeasonal",
     "Subsidence (COMET)":   "colorBarPanelSubsidence",
-    "Vertical":             "colorBarPanelUp",
-    "East":                 "colorBarPanelEast",
+    "Up component":         "colorBarPanelUp",
+    "East-West component":  "colorBarPanelEast",
 }
 
 const overlayExclusiveLayers = { ...overlayLayersLuh, ...overlayLayerComet };
