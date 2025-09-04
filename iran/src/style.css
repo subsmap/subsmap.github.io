@@ -32,12 +32,14 @@ a {
     background: rgba(80, 80, 80, 0.75);
 }
 
-.grid-container {
+.lonlat-container {
     display: grid;
     grid-template-columns: auto;
     grid-gap: 1px;
-    padding: 1px;
-    width: 95%;
+    padding: 3px;
+    border: 1px solid rgba(100, 100, 100, 1);
+    background: rgba(100, 100, 100, 0.75);
+    border-radius: 2px;
 }
 
 .settingPannel {
@@ -63,6 +65,15 @@ a {
     display: flex;
     align-items: center;
 }
+
+.color-bar-panel {
+    transition: transform 3s ease;
+    border: 1px solid rgba(100, 100, 100, 1);
+    background: rgba(100, 100, 100, 0.75);
+    padding: 3px;
+    border-radius: 2px;
+}
+
 
 .color-bar-image {
     width: 100px;
