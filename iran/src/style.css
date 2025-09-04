@@ -56,6 +56,12 @@ a {
     margin: 10px;
 }
 
+.settingPannel.collapsed {
+    height: 20px;
+    overflow: hidden;
+    min-height: 0;
+}
+
 .slider {
     width: 70px;
     height: 100%;

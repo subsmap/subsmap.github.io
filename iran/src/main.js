@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', setupMapClick);
 document.addEventListener('DOMContentLoaded', setupColorBarControls);
 document.addEventListener('DOMContentLoaded', setupPopup);
 disableRightClick();
+setupCollapsibleSettingsPanel()
 
 function initializeControlPanel() {
     // initialize control panel
@@ -471,6 +472,22 @@ function setupPopup() {
         e.stopPropagation();
         togglePopup('none');
         document.removeEventListener('click', handleDocumentClick);
+    });
+}
+
+function setupCollapsibleSettingsPanel() {
+    const settingPanel = document.getElementById('settingPannel');
+    const toggleBar = document.getElementById('settingToggleBar');
+    const toggleTriangle = document.getElementById('toggleTriangle');
+
+    toggleBar.addEventListener('click', function() {
+        if (settingPanel.classList.contains('collapsed')) {
+            settingPanel.classList.remove('collapsed');
+            toggleTriangle.innerHTML = '&#10134;';
+        } else {
+            settingPanel.classList.add('collapsed');
+            toggleTriangle.innerHTML = '&#10133;';
+        }
     });
 }
 
