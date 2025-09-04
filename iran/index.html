@@ -42,35 +42,50 @@
         <div id="colorBarPanelSubsidence" class="color-bar-panel">
             <div id="subsidenceInfo"><a data-translate="subsidenceRate">Subsidence rate (cm/yr)</a><span id='subsidenceVal'></span></div>
             <div class="color-bar-container ltr">
+                <div class="arrow-controls">
+                    <a href="#" class="color-bar-button" id="subsidenceIncreaseLeft">⏶</a>
+                    <a href="#" class="color-bar-button" id="subsidenceDecreaseLeft">⏷</a>
+                </div>
                 <div class="color-bar color-bar-spectral" id="colorBar">
                     <div class="color-label" id="colorbarSubsidenceLeft">0</div>
                     <div class="color-label" id="colorbarSubsidenceCenter">12.5</div>
                     <div class="color-label" id="colorbarSubsidenceRight">25</div>
                 </div>
                 <div class="arrow-controls">
-                    <a href="#" class="color-bar-button" id="subsidenceDecrease">⏷</a>
-                    <a href="#" class="color-bar-button" id="subsidenceIncrease">⏶</a>
+                    <a href="#" class="color-bar-button" id="subsidenceIncreaseRight">⏶</a>
+                    <a href="#" class="color-bar-button" id="subsidenceDecreaseRight">⏷</a>
                 </div>
             </div>
+            <hr>
         </div>
-        
+
         <div id="colorBarPanelSeasonal" class="color-bar-panel" style=display:none>
             <div id="seasonalInfo"><a data-translate="seasonalAmplitude">Seasonal amplitude (cm)</a><span id="seasonalVal"></span></div>
             <div class="color-bar-container ltr">
+                <div class="arrow-controls">
+                    <a href="#" class="color-bar-button" id="seosonalIncreaseLeft">⏶</a>
+                    <a href="#" class="color-bar-button" id="seosonalDecreaseLeft">⏷</a>
+                </div>
+
                 <div class="color-bar color-bar-viridis" id="colorBarSeosonal">
                     <div class="color-label" id="colorbarSeosonalLeft">0</div>
                     <div class="color-label" id="colorbarSeosonalCenter">5</div>
                     <div class="color-label" id="colorbarSeosonalRight">10</div>
                 </div>
                 <div class="arrow-controls">
-                    <a href="#" class="color-bar-button" id="seosonalDecrease">⏷</a>
-                    <a href="#" class="color-bar-button" id="seosonalIncrease">⏶</a>
+                    <a href="#" class="color-bar-button" id="seosonalIncreaseRight">⏶</a>
+                    <a href="#" class="color-bar-button" id="seosonalDecreaseRight">⏷</a>
                 </div>
             </div>
+            <hr>
         </div>
 
         <div id="colorBarPanelUp" class="color-bar-panel" style=display:none>
             <div id="upInfo"><a data-translate="up-component">Up component (cm)</a><span id="upVal"></span></div>
+            <div class="arrow-controls">
+                    <a href="#" class="color-bar-button" id="upIncreaseLeft">⏶</a>
+                    <a href="#" class="color-bar-button" id="upDecreaseLeft">⏷</a>
+            </div>
             <div class="color-bar-container ltr">
                 <div class="color-bar color-bar-bam" id="colorBarUp">
                     <div class="color-label" id="colorbarUpLeft" style="color: white;">-20</div>
@@ -78,25 +93,31 @@
                     <div class="color-label" id="colorbarUpRight" style="color: white;">20</div>
                 </div>
                 <div class="arrow-controls">
-                    <a href="#" class="color-bar-button" id="upDecrease">⏷</a>
-                    <a href="#" class="color-bar-button" id="upIncrease">⏶</a>
+                    <a href="#" class="color-bar-button" id="upIncreaseRight">⏶</a>
+                    <a href="#" class="color-bar-button" id="upDecreaseRight">⏷</a>
                 </div>
             </div>
+            <hr>
         </div>
 
-        <div id="colorBarPanelEast" class="color-bar-panel" style=display:none>
-            <div id="eastInfo"><a data-translate="up-component">East-West component (cm)</a><span id="eastVal"></span></div>
+        <div id="colorBarPanelEW" class="color-bar-panel" style=display:none>
+            <div id="ewInfo"><a data-translate="up-component">E-W component (cm)</a><span id="ewVal"></span></div>
             <div class="color-bar-container ltr">
-                <div class="color-bar color-bar-cork" id="colorBarEast">
-                    <div class="color-label" id="colorbarEastLeft" style="color: white;">-5</div>
-                    <div class="color-label" id="colorbarEastCenter" style="color: white;">0</div>
-                    <div class="color-label" id="colorbarEastRight" style="color: white;">5</div>
+                <div class="arrow-controls">
+                    <a href="#" class="color-bar-button" id="ewIncreaseLeft">⏶</a>
+                    <a href="#" class="color-bar-button" id="ewDecreaseLeft">⏷</a>
+                </div>
+                <div class="color-bar color-bar-cork" id="colorBarEW">
+                    <div class="color-label" id="colorbarEWLeft" style="color: white;">-5</div>
+                    <div class="color-label" id="colorbarEWCenter" style="color: white;">0</div>
+                    <div class="color-label" id="colorbarEWRight" style="color: white;">5</div>
                 </div>
                 <div class="arrow-controls">
-                    <a href="#" class="color-bar-button" id="eastDecrease">⏷</a>
-                    <a href="#" class="color-bar-button" id="eastIncrease">⏶</a>
+                    <a href="#" class="color-bar-button" id="ewIncreaseRight">⏶</a>
+                    <a href="#" class="color-bar-button" id="ewDecreaseRight">⏷</a>
                 </div>
             </div>
+            <hr>
         </div>
 
 

@@ -122,7 +122,7 @@ function setupOverlayLayersComet(){
         maxZoom: maxZoom,
         attribution: subsidenceCometAttributionFull
     });
-    const wmsVerticalComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsUpComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:Iran_vertical_rate_2014-2022_s1_decompose_comet_v1.0.0',
         STYLES: 'cm_bam',
@@ -134,7 +134,7 @@ function setupOverlayLayersComet(){
         maxZoom: maxZoom,
         attribution: subsidenceCometAttributionFull
     });
-    const wmsEastComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsEWComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:Iran_east_rate_2014-2022_s1_decompose_comet_v1.0.0',
         STYLES: 'cm_cork',
@@ -149,7 +149,7 @@ function setupOverlayLayersComet(){
 
     return {
         "Subsidence (COMET)": wmsSubsidenceComet,
-        "Up component": wmsVerticalComet,
-        "East-West component": wmsEastComet
+        "Up component": wmsUpComet,
+        "E-W component": wmsEWComet
         };
 }

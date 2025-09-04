@@ -37,8 +37,6 @@ a {
     grid-template-columns: auto;
     grid-gap: 1px;
     padding: 3px;
-    border: 1px solid rgba(100, 100, 100, 1);
-    background: rgba(100, 100, 100, 0.75);
     border-radius: 2px;
 }
 
@@ -74,9 +72,8 @@ a {
 
 .color-bar-panel {
     transition: transform 3s ease;
-    border: 1px solid rgba(100, 100, 100, 1);
-    background: rgba(100, 100, 100, 0.75);
-    padding: 3px;
+    padding: 5px;
+    margin-bottom: 10px;
     border-radius: 2px;
 }
 
@@ -100,8 +97,11 @@ a {
 .arrow-controls {
     display: flex;
     align-items: center;
-    margin: 10px;
+    margin: 2px;
     float: left;
+    flex-direction: column;
+    gap: 0px; /* optional: space between arrows */
+
 }
 
 .arrow-controls a {
@@ -111,7 +111,10 @@ a {
 .color-bar-button {
     display: inline-block;
     margin: 2px;
-    font-size: 18px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 14px;
+    color: white;
     transition: transform 0.3s ease;
 }
 

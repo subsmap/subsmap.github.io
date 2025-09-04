@@ -16,7 +16,7 @@ const layersColorbars = {
     "Seasonal":             "colorBarPanelSeasonal",
     "Subsidence (COMET)":   "colorBarPanelSubsidence",
     "Up component":         "colorBarPanelUp",
-    "East-West component":  "colorBarPanelEast",
+    "E-W component":        "colorBarPanelEW",
 }
 
 const overlayExclusiveLayers = { ...overlayLayersLuh, ...overlayLayerComet };
@@ -397,46 +397,82 @@ function setupMapClick() {
 }
 
 function setupColorBarControls() {
-    // setup controls for colorbar adjustments
-    // buttonId and settings for colorbar adjustments
     const adjustmentConfigurations = [
-        { buttonId: 'subsidenceIncrease', change: 5, centerId: 'colorbarSubsidenceCenter', rightId: 'colorbarSubsidenceRight', minValue: 5, maxValue: 40, layers: [overlayLayers['Subsidence (LUH)'], overlayLayers['Subsidence (COMET)']] },
-        { buttonId: 'subsidenceDecrease', change: -5, centerId: 'colorbarSubsidenceCenter', rightId: 'colorbarSubsidenceRight', minValue: 5, maxValue: 40, layers: [overlayLayers['Subsidence (LUH)'], overlayLayers['Subsidence (COMET)']] },
-        { buttonId: 'seosonalIncrease', change: 5, centerId: 'colorbarSeosonalCenter', rightId: 'colorbarSeosonalRight', minValue: 5, maxValue: 15, layers: [overlayLayers['Seasonal']] },
-        { buttonId: 'seosonalDecrease', change: -5, centerId: 'colorbarSeosonalCenter', rightId: 'colorbarSeosonalRight', minValue: 5, maxValue: 15, layers: [overlayLayers['Seasonal']] }
+        // subsidence
+        { buttonId: 'subsidenceIncreaseRight', change: 5, centerId: 'colorbarSubsidenceCenter', minId: 'colorbarSubsidenceLeft', maxId: 'colorbarSubsidenceRight', minValue: -40, maxValue: 40, layers: [overlayLayers['Subsidence (LUH)'], overlayLayers['Subsidence (COMET)']], direction: 'right' },
+        { buttonId: 'subsidenceDecreaseRight', change: -5, centerId: 'colorbarSubsidenceCenter', minId: 'colorbarSubsidenceLeft', maxId: 'colorbarSubsidenceRight', minValue: -40, maxValue: 40, layers: [overlayLayers['Subsidence (LUH)'], overlayLayers['Subsidence (COMET)']], direction: 'right' },
+
+        { buttonId: 'subsidenceIncreaseLeft', change: 5, centerId: 'colorbarSubsidenceCenter', minId: 'colorbarSubsidenceLeft', maxId: 'colorbarSubsidenceRight', minValue: -40, maxValue: 40, layers: [overlayLayers['Subsidence (LUH)'], overlayLayers['Subsidence (COMET)']], direction: 'left' },
+        { buttonId: 'subsidenceDecreaseLeft', change: -5, centerId: 'colorbarSubsidenceCenter', minId: 'colorbarSubsidenceLeft', maxId: 'colorbarSubsidenceRight', minValue: -40, maxValue: 40, layers: [overlayLayers['Subsidence (LUH)'], overlayLayers['Subsidence (COMET)']], direction: 'left' },
+        // seasonal
+        { buttonId: 'seosonalIncreaseRight', change: 5, centerId: 'colorbarSeosonalCenter', minId: 'colorbarSeosonalLeft', maxId: 'colorbarSeosonalRight', minValue: 0, maxValue: 10, layers: [overlayLayers['Seasonal']], direction: 'right' },
+        { buttonId: 'seosonalDecreaseRight', change: -5, centerId: 'colorbarSeosonalCenter', minId: 'colorbarSeosonalLeft', maxId: 'colorbarSeosonalRight', minValue: 0, maxValue: 10, layers: [overlayLayers['Seasonal']], direction: 'right' },
+
+        { buttonId: 'seosonalIncreaseLeft', change: 5, centerId: 'colorbarSeosonalCenter', minId: 'colorbarSeosonalLeft', maxId: 'colorbarSeosonalRight', minValue: 0, maxValue: 10, layers: [overlayLayers['Seasonal']], direction: 'left' },
+        { buttonId: 'seosonalDecreaseLeft', change: -5, centerId: 'colorbarSeosonalCenter', minId: 'colorbarSeosonalLeft', maxId: 'colorbarSeosonalRight', minValue: 0, maxValue: 10, layers: [overlayLayers['Seasonal']], direction: 'left' },
+
+        // up
+        { buttonId: 'upIncreaseRight', change: 5, centerId: 'colorbarUpCenter', minId: 'colorbarUpLeft', maxId: 'colorbarUpRight', minValue: -30, maxValue: 30, layers: [overlayLayers['Up component']], direction: 'right' },
+        { buttonId: 'upDecreaseRight', change: -5, centerId: 'colorbarUpCenter', minId: 'colorbarUpLeft', maxId: 'colorbarUpRight', minValue: -30, maxValue: 30, layers: [overlayLayers['Up component']], direction: 'right' },
+
+        { buttonId: 'upIncreaseLeft', change: 5, centerId: 'colorbarUpCenter', minId: 'colorbarUpLeft', maxId: 'colorbarUpRight', minValue: -30, maxValue: 30, layers: [overlayLayers['Up component']], direction: 'left' },
+        { buttonId: 'upDecreaseLeft', change: -5, centerId: 'colorbarUpCenter', minId: 'colorbarUpLeft', maxId: 'colorbarUpRight', minValue: -30, maxValue: 30, layers: [overlayLayers['Up component']], direction: 'left' },
+
+        // ew
+        { buttonId: 'ewIncreaseRight', change: 5, centerId: 'colorbarEWCenter', minId: 'colorbarEWLeft', maxId: 'colorbarEWRight', minValue: -30, maxValue: 30, layers: [overlayLayers['E-W component']], direction: 'right' },
+        { buttonId: 'ewDecreaseRight', change: -5, centerId: 'colorbarEWCenter', minId: 'colorbarEWLeft', maxId: 'colorbarEWRight', minValue: -30, maxValue: 30, layers: [overlayLayers['E-W component']], direction: 'right' },
+
+        { buttonId: 'ewIncreaseLeft', change: 5, centerId: 'colorbarEWCenter', minId: 'colorbarEWLeft', maxId: 'colorbarEWRight', minValue: -30, maxValue: 30, layers: [overlayLayers['E-W component']], direction: 'left' },
+        { buttonId: 'ewDecreaseLeft', change: -5, centerId: 'colorbarEWCenter', minId: 'colorbarEWLeft', maxId: 'colorbarEWRight', minValue: -30, maxValue: 30, layers: [overlayLayers['E-W component']], direction: 'left' },
+
     ];
-    setupListeners(adjustmentConfigurations);
 
-    function setupListeners(configurations) {
-        // Setup listeners for each item in configurations
-        configurations.forEach(config => {
-            setupAdjustmentListener(config);
-        });
-    }
+    adjustmentConfigurations.forEach(config => {
+        setupAdjustmentListener(config);
+    });
 
-    function setupAdjustmentListener({ buttonId, change, centerId, rightId, minValue, maxValue, layers }) {
+    function setupAdjustmentListener({ buttonId, change, centerId, minId, maxId, minValue, maxValue, layers, direction }) {
         document.getElementById(buttonId).addEventListener('click', function(event) {
             event.preventDefault();
-            adjustColorBarValue(change, centerId, rightId, minValue, maxValue, layers);
+            adjustColorBarValue(change, centerId, minId, maxId, minValue, maxValue, layers, direction);
         });
     }
 
-    function adjustColorBarValue(change, centerId, rightId, minValue, maxValue, layers) {
-        // set new value
-        const maxLabel = document.getElementById(rightId);
+    function adjustColorBarValue(change, centerId, minId, maxId, minValue, maxValue, layers, direction) {
+        const minLabel = document.getElementById(minId);
+        const maxLabel = document.getElementById(maxId);
         const centerLabel = document.getElementById(centerId);
-        const currentValue = parseInt(maxLabel.innerText, 10);
-        let newValue = currentValue + change;
+        let minVal = parseInt(minLabel.innerText, 10);
+        let maxVal = parseInt(maxLabel.innerText, 10);
 
-        newValue = Math.max(minValue, Math.min(maxValue, newValue));
+        if (direction === 'right') {
+            if (change < 0 && maxVal > -5 && maxVal <= 5) change = -1;
+            if (change > 0 && maxVal >= -5 && maxVal < 5) change = 1;
 
-        maxLabel.innerText = newValue;
-        centerLabel.innerText = newValue / 2;
-        layers.forEach(layer => updateEnvironmentVariableAndLayer(newValue * 10, layer));
+            let newMax = Math.max(minValue, Math.min(maxValue, maxVal + change));
+            if (newMax <= minVal) return;
+            maxLabel.innerText = newMax;
+            centerLabel.innerText = minVal + (newMax - minVal) / 2;
+            layers.forEach(layer => updateEnvironmentVariableAndLayer(minVal * 10, newMax * 10, layer));
+        } else {
+            if (change < 0 && minVal <= 5 && minVal > -5) change = -1;
+            if (change > 0 && minVal < 5 && minVal >=-5) change = 1;
+
+            let newMin = Math.max(minValue, Math.min(maxValue, minVal + change));
+            if (newMin >= maxVal) return;
+            minLabel.innerText = newMin;
+            centerLabel.innerText = maxVal - (maxVal - newMin) / 2;
+            layers.forEach(layer => updateEnvironmentVariableAndLayer(newMin * 10, maxVal * 10, layer));
+        }
     }
 
-    function updateEnvironmentVariableAndLayer(maxValue, layer) {
-        const envString = `c1:0;c2:${maxValue / 4};c3:${maxValue / 2};c4:${(maxValue * 3) / 4};c5:${maxValue}`;
+    function updateEnvironmentVariableAndLayer(minValue, maxValue, layer) {
+        const c1 = Math.round(minValue);
+        const c2 = Math.round(minValue + (maxValue - minValue) / 4);
+        const c3 = Math.round(minValue + (maxValue - minValue) / 2);
+        const c4 = Math.round(minValue + (maxValue - minValue) * 3 / 4);
+        const c5 = Math.round(maxValue);
+        const envString = `c1:${c1};c2:${c2};c3:${c3};c4:${c4};c5:${c5}`;
         layer.setParams({ env: envString });
     }
 }
