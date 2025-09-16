@@ -47,7 +47,7 @@ function setupBaseLayers(accessToken) {
 }
 
 function setupInclusiveOverlayLayers(){
-    const wmsSubsidence = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsSubsidence = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:subsidence_rate_2014-2020_desc_mmpr_v1.0.0',
         STYLES: 'cm_spectral',
@@ -63,7 +63,7 @@ function setupInclusiveOverlayLayers(){
 }
 
 function setupExclusiveOverlayLayers() {
-    const wmsSeasonal = L.tileLayer.wms('https://gs.mapsdev.com/geoserver/subsidence/wms', {
+    const wmsSeasonal = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'subsidence:seasonal_amplitude_2014-2020_desc_mm_v1.0.0',
         STYLES: 'cm_viridis',
@@ -122,8 +122,8 @@ function setupExclusiveOverlayLayers() {
 
     return {
         "Seasonal": wmsSeasonal,
-        "Counties": wmsCountiesSubsidenceArea,
-        "Provinces": wmsProvincesSubsidenceArea,
+//        "Counties": wmsCountiesSubsidenceArea,
+//        "Provinces": wmsProvincesSubsidenceArea,
         // "Major Basin": wmsMajorBasinSubsidenceArea,
         // "Minor Basin": wmsMinorBasinSubsidenceArea,
     };
