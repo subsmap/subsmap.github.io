@@ -38,7 +38,7 @@ const map = L.map('map', {
 });
 
 map.attributionControl.addAttribution('©<a href="https://www.ipi.uni-hannover.de/en/haghighi/" target="_blank"> <strong>Mahmud Haghighi</strong></a> 2023-2025');
-baseLayers['OSM Map'].addTo(map);
+baseLayers['Terrain'].addTo(map);
 
 let controlPanel;
 
