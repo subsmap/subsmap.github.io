@@ -25,7 +25,8 @@ function setupBaseLayers() {
         tms: true,
         minZoom: minZoom,
         maxZoom: maxZoom,
-        attribution: ''
+        attribution: 'Basemap: subsmap | © <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | <a href="https://doi.org/10.5270/ESA-c5d3d65" target="_blank">GLO-30</a> | <a href="https://doi.org/10.2909/602507b2-96c7-47bb-b79d-7ba25e97d0a9" target="_blank">LCFM</a> '
+
     });
 
 
