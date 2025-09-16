@@ -44,13 +44,14 @@ let controlPanel;
 
 // Setup
 initializeControlPanel();
+overlayLayers['Subsidence (LUH)'].addTo(map);
+disableLayerInControlPanel('Satellite');
 setupLayerChangeListeners();
 setupMapboxLayerChangeListeners();
 setupLonLatDisplay();
 setupOpacityControl();
 setupMapHover();
 setupMapLayerChange();
-overlayLayers['Subsidence (LUH)'].addTo(map);
 document.addEventListener('DOMContentLoaded', setupMapClick);
 document.addEventListener('DOMContentLoaded', setupColorBarControls);
 document.addEventListener('DOMContentLoaded', setupPopup);
@@ -81,7 +82,7 @@ function initializeControlPanel() {
     }
 
     controlPanel = L.control.groupedLayers(baseLayersWithNames, groupedOverlaysWithNames, { collapsed: false }).addTo(map);
-
+    disableLayerInControlPanel('Satellite');
 }
 
 function setupMapLayerChange(){
@@ -585,5 +586,17 @@ function disableRightClick(){
     // disable right click
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
+    });
+}
+
+function disableLayerInControlPanel(layerName) {
+    document.querySelectorAll('.leaflet-control-layers-base label').forEach(label => {
+        if (label.textContent.trim() === getTranslation(currentLanguage, layerName)) {
+            const input = label.querySelector('input[type="radio"], input[type="checkbox"]');
+            if (input) {
+                input.disabled = true;
+                label.style.opacity = 0.5;
+            }
+        }
     });
 }
