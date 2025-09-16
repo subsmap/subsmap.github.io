@@ -45,7 +45,7 @@ let controlPanel;
 // Setup
 initializeControlPanel();
 overlayLayers['Subsidence (LUH)'].addTo(map);
-disableLayerInControlPanel('Satellite');
+setupDisableLoginLayers()
 setupLayerChangeListeners();
 setupMapboxLayerChangeListeners();
 setupLonLatDisplay();
@@ -599,4 +599,11 @@ function disableLayerInControlPanel(layerName) {
             }
         }
     });
+}
+
+function setupDisableLoginLayers(){
+    disableLayerInControlPanel('Satellite');
+    map.on('overlayadd', () => disableLayerInControlPanel('Satellite'));
+    map.on('overlayremove', () => disableLayerInControlPanel('Satellite'));
+    map.on('baselayerchange', () => disableLayerInControlPanel('Satellite'));
 }
