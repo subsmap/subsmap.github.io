@@ -13,25 +13,26 @@ const translations = {
         "close": "Close",
 
         //// map layers
-        "No Background": "No Background",
         "OSM Map": "OSM Map",
-        "OSM Topo": "OSM Topo",
-        "OSM Cycle": "OSM Cycle",
+        "Satellite": "Satellite (requires login)",
+        "Terrain": "Terrain Map",
 
         "Counties": "Counties",
         "Provinces": "Provinces",
         "Major Basin": "Major Basin",
         "Minor Basin": "Minor Basin",
-        "Subsidence": "Subsidence",
+        "Subsidence (LUH)": "Subsidence",
         "Seasonal": "Seasonal Amplitude",
 
-        "Subsidence map": "Subsidence map",
-        "Information": "Information",
+        "Subsidence (COMET)": "Subsidence",
+        "Up component": "Up component",
+        "E-W component": "E-W component",
 
-        // config
-        "Province:": "Province:",
-        "Subs. Area:": "Subs. Area:",
-        "Max. Subs.:": "Max. Subs.:",
+//        "Subsidence map": "Subsidence map",
+//        "Information": "Information",
+//        "Province:": "Province:",
+//        "Subs. Area:": "Subs. Area:",
+//        "Max. Subs.:": "Max. Subs.:",
     },
     fa: {
         "opacity": "شفافیت:",
@@ -46,24 +47,24 @@ const translations = {
         "close": "بستن",
 
         //// map layers
-        "No Background": "بی پس زمینه",
         "OSM Map": "نقشه OSM",
-        "OSM Topo": "توپوگرافی OSM",
-        "OSM Cycle": "دوچرخه OSM",
+        "Satellite": "ماهواره (نیازمند حساب کاربری)",
+        "Terrain": "نقشه زمین",
 
         "Counties": "شهرستان",
         "Provinces": "استان",
         "Major Basin": "حوضه اصلی",
         "Minor Basin": "حوضه فرعی",
-        "Subsidence": "فرونشست",
+        "Subsidence (LUH)": "فرونشست",
         "Seasonal": "دامنه فصلی",
 
-        "Subsidence map": "نقشه فرونشست",
-        "Information": "اطلاعات",
+        "Subsidence (COMET)": "فرونشست (COMET)",
+        "Up component": "مولفه ارتفاعی",
+        "E-W component": "مولفه شرقی-غربی",
 
-        // config
-        "Province:": "استان:",
-        "Subs. Area:": "مساحت فرونشست:",
-        "Max. Subs.:": "بیشینه فرونشست:",
+//        "Information": "اطلاعات",
+//        "Province:": "استان:",
+//        "Subs. Area:": "مساحت فرونشست:",
+//        "Max. Subs.:": "بیشینه فرونشست:",
     }
 };
