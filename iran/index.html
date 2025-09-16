@@ -20,58 +20,6 @@
 
     <div id="map"></div>
 
-    <div id="maintenancePopup" style="
-      display:none;
-      position:fixed;
-      top:0; left:0;
-      width:100vw; height:100vh;
-      background:rgba(0,0,0,0.7);
-      z-index:9999;
-      justify-content:center;
-      align-items:center;
-    ">
-      <div style="
-        background:#fff;
-        padding:2.5em 2em;
-        border-radius:12px;
-        text-align:center;
-        max-width:90vw;
-        box-shadow:0 8px 32px rgba(0,0,0,0.25);
-      ">
-        <h2 style="margin-bottom:1em;">Website Under Maintenance</h2>
-        <p style="font-size:1.1em; margin-bottom:1.5em;">
-          The interactive map of land subsidence in Iran is currently being updated and will be available again soon.<br>
-          For more information, feel free to contact us.
-        </p>
-        <h2 style="font-family: 'Vazirmatn', sans-serif; direction: rtl;">وبسایت در حال به‌روز رسانی</h2>
-        <p style="font-family: 'Vazirmatn', sans-serif; direction: rtl;">در حال حاضر نقشه تعاملی فرونشست زمین در ایران در حال به روز رسانی است و به زودی دوباره در دسترس خواهد بود.
-        در صورت نیاز به اطلاعات بیشتر می‌توانید با ما تماس بگیرید. </p>
-        <button id="closeMaintenancePopup" style="
-          margin-top:1em;
-          padding:0.5em 2em;
-          border:none;
-          background:#1565c0;
-          color:#fff;
-          border-radius:6px;
-          font-size:1em;
-          cursor:pointer;
-          box-shadow:0 2px 8px rgba(21,101,192,0.15);
-        ">OK</button>
-      </div>
-
-        <script>
-        window.addEventListener('load', function () {
-            const popup = document.getElementById('maintenancePopup');
-            const closeBtn = document.getElementById('closeMaintenancePopup');
-            popup.style.display = 'flex';
-            closeBtn.addEventListener('click', function () {
-                popup.style.display = 'none';
-            });
-        });
-        </script>
-    </div>
-
-
     <div id="settingPannel" class="settingPannel">
         <div>
             <label data-translate="opacity">Opacity: <span id="slider-value">100%</span></label>
