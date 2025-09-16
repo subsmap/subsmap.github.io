@@ -13,14 +13,14 @@ function setupMapboxLayers() {
     };
 }
 
-function setupBaseLayers() {
+function setupBaseLayers(language = 'en') {
     const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: "Basemap: &copy; <a href='https://openstreetmap.org/copyright' target='_blank'>OpenStreetMap</a> contributors"
     });
 
     const terrainLayer = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/gwc/service/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'basemap_iran_en',
+        LAYERS: language === 'fa' ? 'basemap_iran_fa' : 'basemap_iran_en',
         format: 'image/png',
         tms: true,
         minZoom: minZoom,

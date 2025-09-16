@@ -2,7 +2,7 @@ let currentLanguage = 'en';
 let opacity = 1;
 
 // base and overlay layers
-const baseLayers = setupBaseLayers();
+const baseLayers = setupBaseLayers(currentLanguage);
 const mapboxLayers = setupMapboxLayers();
 Object.assign(baseLayers, mapboxLayers);
 
@@ -540,11 +540,27 @@ function translatePage() {
 function changeLanguage(lang) {
     if (currentLanguage !== lang) {
         currentLanguage = lang;
+        updateBaseLayersForLanguage(lang);
         initializeControlPanel();
         translatePage();
         updateDocumentLanguageAttributes(lang);
         updateAboutFrame(lang);
     }
+}
+
+function updateBaseLayersForLanguage(lang) {
+    let activeBaseLayerKey = null;
+    for (const [key, layer] of Object.entries(baseLayers)) {
+        if (map.hasLayer(layer)) {
+            activeBaseLayerKey = key;
+            map.removeLayer(layer);
+        }
+    }
+
+    Object.assign(baseLayers, setupBaseLayers(lang));
+
+    const layerToAdd = baseLayers[activeBaseLayerKey] || baseLayers['Terrain'];
+    layerToAdd.addTo(map);
 }
 
 function updateDocumentLanguageAttributes(lang) {
