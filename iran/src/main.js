@@ -211,6 +211,13 @@ function setupMapHover() {
         if (map.hasLayer(overlayLayers['Seasonal'])) {
             getWMSInfo(latlng, 'amplitude', overlayLayers['Seasonal'], 'seasonalVal');
         }
+        if (map.hasLayer(overlayLayers['Up component'])) {
+            getWMSInfo(latlng, 'vertical_rate', overlayLayers['Up component'], 'upVal');
+        }
+        if (map.hasLayer(overlayLayers['E-W component'])) {
+            getWMSInfo(latlng, 'ew_rate', overlayLayers['E-W component'], 'ewVal');
+        }
+
     }
 
     // Fetches WMS info and update display
@@ -277,6 +284,8 @@ function setupMapClick() {
     const fieldsToShow = {
         'Subsidence (LUH)': ['subsidence_rate'],
         'Subsidence (COMET)': ['subsidence_rate'],
+        'Up component': ['vertical_rate'],
+        'E-W component': ['ew_rate'],
         'Seasonal': ['amplitude'],
         'Counties': ['name_en', 'subs_area_sqkm', 'area_sqkm','subs_area_percent', 'subs_max', 'Population'],
         'Provinces': ['name_en', 'subs_area_sqkm', 'area_sqkm','subs_area_percent', 'subs_max'],
@@ -369,10 +378,15 @@ function setupMapClick() {
                 const properties = data.features[0].properties;
                 const content = fieldsList.map(field => {
                     if (properties[field] !== undefined && fieldConfig[field]) {
-                        if (properties[field] === fieldConfig[field].nodata) {
+                        const nodata = fieldConfig[field].nodata;
+                        const value = properties[field];
+                        const isNoData = Array.isArray(nodata)
+                            ? nodata.includes(value)
+                            : value === nodata;
+                        if (isNoData) {
                             return `No data`;
                         }
-                        return `${fieldConfig[field].label} <strong>${fieldConfig[field].format(properties[field])}</strong> ${fieldConfig[field].unit}`;
+                        return `${fieldConfig[field].label} <strong>${fieldConfig[field].format(value)}</strong> ${fieldConfig[field].unit}`;
                     }
                     return `No data`;
                 }).join('<br>');
