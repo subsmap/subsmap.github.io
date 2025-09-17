@@ -334,7 +334,19 @@ function setupMapClick() {
             label: '',
             format: value => formatNumberIntl((Math.round(value)/10).toFixed(0)),
             unit: '(cm/yr)',
-            nodata: 65535
+            nodata: [65535, -9999]
+        },
+        vertical_rate: {
+            label: '',
+            format: value => formatNumberIntl((Math.round(value)/10).toFixed(0)),
+            unit: '(cm/yr)',
+            nodata: -9999
+        },
+        ew_rate: {
+            label: '',
+            format: value => formatNumberIntl((Math.round(value)/10).toFixed(0)),
+            unit: '(cm/yr)',
+            nodata: -9999
         },
         subs_area_percent:{
             label: 'Subs. Area',
