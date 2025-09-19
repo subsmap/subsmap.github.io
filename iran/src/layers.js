@@ -34,7 +34,7 @@ function setupInclusiveOverlayLayers(){
 function setupOverlayLayersLuh() {
     const wmsSubsidence = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:subsidence_rate_2014-2020_desc_mmpr_v1.0.0',
+        LAYERS: 'subsidence_rate_2014-2020_desc_mmpr_v1.0.0',
         STYLES: 'cm_spectral',
         format: 'image/png',
         transparent: true,
@@ -46,7 +46,7 @@ function setupOverlayLayersLuh() {
     });
     const wmsSeasonal = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:seasonal_amplitude_2014-2020_desc_mm_v1.0.0',
+        LAYERS: 'seasonal_amplitude_2014-2020_desc_mm_v1.0.0',
         STYLES: 'cm_viridis',
         format: 'image/png',
         transparent: true,
@@ -58,7 +58,7 @@ function setupOverlayLayersLuh() {
     });
     const wmsCountiesSubsidenceArea = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:counties_2014-2020_v1.0.0',
+        LAYERS: 'counties_2014-2020_v1.0.0',
         STYLES: 'subsidence:subsidence_area_percent_white_to_red',
         format: 'image/png',
         transparent: true,
@@ -69,7 +69,7 @@ function setupOverlayLayersLuh() {
     });
     const wmsProvincesSubsidenceArea = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:provinces_2014-2020_v1.0.0',
+        LAYERS: 'provinces_2014-2020_v1.0.0',
         STYLES: 'subsidence:subsidence_area_percent_white_to_red',
         format: 'image/png',
         transparent: true,
@@ -80,7 +80,7 @@ function setupOverlayLayersLuh() {
     });
     const wmsMajorBasinSubsidenceArea = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:major_catchments_2014-2020_v1.0.0',
+        LAYERS: 'major_catchments_2014-2020_v1.0.0',
         STYLES: 'subsidence:counties_subsidence_area_percent_white+reds',
         format: 'image/png',
         transparent: true,
@@ -91,7 +91,7 @@ function setupOverlayLayersLuh() {
     });
     const wmsMinorBasinSubsidenceArea = L.tileLayer.wms('https://www.geo.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:minor_catchments_2014-2020_v1.0.0',
+        LAYERS: 'minor_catchments_2014-2020_v1.0.0',
         STYLES: 'subsidence:counties_subsidence_area_percent_white+reds',
         format: 'image/png',
         transparent: true,
@@ -115,7 +115,7 @@ function setupOverlayLayersLuh() {
 function setupOverlayLayersComet(){
     const wmsSubsidenceComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:Iran_subsidence_rate_gt1mmpyr_2014-2022_Sentinel-1_InSAR_decomposed_v1.0.0_tiled',
+        LAYERS: 'Iran_subsidence_rate_gt1mmpyr_2014-2022_Sentinel-1_InSAR_decomposed_v1.0.0_tiled',
         STYLES: 'cm_spectral',
         format: 'image/png',
         transparent: true,
@@ -127,7 +127,7 @@ function setupOverlayLayersComet(){
     });
     const wmsUpComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:Iran_vertical_rate_2014-2022_s1_decompose_comet_v1.0.0',
+        LAYERS: 'Iran_vertical_rate_2014-2022_s1_decompose_comet_v1.0.0',
         STYLES: 'cm_bam',
         format: 'image/png',
         transparent: true,
@@ -139,7 +139,7 @@ function setupOverlayLayersComet(){
     });
     const wmsEWComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
-        LAYERS: 'subsidence:Iran_east_rate_2014-2022_s1_decompose_comet_v1.0.0',
+        LAYERS: 'Iran_east_rate_2014-2022_s1_decompose_comet_v1.0.0',
         STYLES: 'cm_cork',
         format: 'image/png',
         transparent: true,
