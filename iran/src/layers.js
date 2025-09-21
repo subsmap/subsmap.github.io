@@ -9,9 +9,10 @@ const subsidenceLuhData = "<a href='https://doi.org/10.5281/zenodo.10815578' tar
 const subsidenceLuhAttributionFull = subsidenceLuhAttribution + subsidenceLuhPaper + " | " + subsidenceLuhData + " | " + sentinelAttribution;
 
 const subsidenceCometAttribution = "Map: "
+const sentinelAttributionComet = 'Contains modified Copernicus Sentinel data 2014-2022, processed by ESA.';
 const subsidenceCometPaper = "<a href='https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024JB030367' target='_blank'>Original paper</a>"
 const subsidenceCometData = ""
-const subsidenceCometAttributionFull = subsidenceCometAttribution + subsidenceCometPaper + " | " + sentinelAttribution;
+const subsidenceCometAttributionFull = subsidenceCometAttribution + subsidenceCometPaper + " | " + sentinelAttributionComet
 
 function setupInclusiveOverlayLayers(){
 //    const wmsSubsidence = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
