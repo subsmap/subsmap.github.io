@@ -129,7 +129,7 @@ function setupOverlayLayersComet(){
     const wmsUpComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'Iran_vertical_rate_2014-2022_s1_decompose_comet_v1.0.0',
-        STYLES: 'cm_bam',
+        STYLES: 'cm_vik_r',
         format: 'image/png',
         transparent: true,
         env: "c1:-200;c2:-100;c3:0;c4:100;c5:200",
@@ -141,7 +141,7 @@ function setupOverlayLayersComet(){
     const wmsEWComet = L.tileLayer.wms('https://gs2.mapsdev.com/geoserver/subsidence/wms', {
         VERSION: '1.1.0',
         LAYERS: 'Iran_east_rate_2014-2022_s1_decompose_comet_v1.0.0',
-        STYLES: 'cm_cork',
+        STYLES: 'cm_bam',
         format: 'image/png',
         transparent: true,
         env: "c1:-50;c2:-25;c3:0;c4:25;c5:50",

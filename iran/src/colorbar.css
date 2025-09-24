@@ -28,6 +28,17 @@
     width: 150px;
 }
 
+.color-bar-vik_r {
+    background: linear-gradient(to right,
+        #67001f 0%,
+        #d65252 25%,
+        #ffffff 50%,
+        #3761ab 75%,
+        #00204d 100%
+    );
+    width: 150px;
+}
+
 .color-bar-bam {
     background: linear-gradient(to right,
         #5a0049 0%,
