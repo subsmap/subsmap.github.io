@@ -15,3 +15,9 @@
 .leaflet-control-container {
     z-index: 1000;
 }
+
+.leaflet-control-scale {
+    bottom: 20px !important;
+    left: 10px !important;
+    position: absolute !important;
+}

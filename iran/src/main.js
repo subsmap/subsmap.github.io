@@ -37,6 +37,8 @@ const map = L.map('map', {
     fullscreenControl: true
 });
 
+L.control.scale({ position: 'bottomleft', metric: true, imperial: false }).addTo(map);
+
 map.attributionControl.addAttribution('©<a href="https://www.ipi.uni-hannover.de/en/haghighi/" target="_blank"> <strong>Mahmud Haghighi</strong></a> 2023-2025');
 baseLayers['Terrain'].addTo(map);
 
