@@ -22,8 +22,8 @@ const layersColorbars = {
 const overlayExclusiveLayers = { ...overlayLayersLuh, ...overlayLayerComet };
 
 const groupedOverlays = {
-    "LUH": overlayLayersLuh,
-    "COMET": overlayLayerComet
+    "LUH (Projected)": overlayLayersLuh,
+    "COMET (Decomposed)": overlayLayerComet
 };
 
 // map
