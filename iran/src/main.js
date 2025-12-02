@@ -377,7 +377,7 @@ function setupMapClick() {
     function handleMapClick(latlng) {
         for (const layerName in overlayExclusiveLayers) {
             if (map.hasLayer(overlayExclusiveLayers[layerName])) {
-                getWMSInfo(latlng, fieldsToShow[layerName], overlayExclusiveLayers[layerName]);
+                //getWMSInfo(latlng, fieldsToShow[layerName], overlayExclusiveLayers[layerName]);
             }
         }
     }
